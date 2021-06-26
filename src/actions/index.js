@@ -10,30 +10,77 @@ export const SET_ERROR = "SET_ERROR";
 //2. Add a standard action that allows us to add new smurf (including the name, nickname, position, summary)
 //3. Add a standard action that allows us to set the value of the error message slice of state.
 
-export const fetchSmurfs = () => (dispatch) => {
- 
-  dispatch({ type: FETCH_SMURFS_START });
+export const fetchSmurfs = () => {
+  
+  return(dispatch) => {
+    dispatch(fetchSmurfStart());
 
   axios.get("http://localhost:3333/smurfs")
     .then(res => {
-      console.log(res);
-      dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data})
+      dispatch(fetchSmurfSuccess(res.data));
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: FETCH_SMURFS_ERROR, payload: err })
+      dispatch(smurfFail(err))
     })
+  }
+}
+
+export const fetchSmurfStart = () => {
+  return({type: FETCH_SMURFS_START})
+}
+
+export const fetchSmurfSuccess = (smurfs) => {
+  return({
+    type: FETCH_SMURFS_SUCCESS, 
+    payload: smurfs
+  })
+}
+
+export const smurfFail = (error) => {
+  return({
+    type: FETCH_SMURFS_ERROR, 
+    payload: error
+  })
 }
 
 export const addSmurf = (newSmurf) => {
   return {
-    type: ADD_SMURF,
-    payload: newSmurf
+    type: ADD_SMURF, 
+    payload: newSmurf}
+}
+
+export const errorMessage = (error) => {
+  return {
+    type: SET_ERROR,
+    payload: error
   }
 }
 
-export const smurfError = () => {
-  return {
-    type: SET_ERROR,
-  }
-}
+
+// export const fetchSmurfs = () => (dispatch) => {
+ 
+//   dispatch({ type: FETCH_SMURFS_START });
+
+//   axios.get("http://localhost:3333/smurfs")
+//     .then(res => {
+//       console.log(res);
+//       dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data})
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       dispatch({ type: FETCH_SMURFS_ERROR, payload: err })
+//     })
+// }
+
+// export const addSmurf = (newSmurf) => {
+//   return {
+//     type: ADD_SMURF,
+//     payload: newSmurf
+//   }
+// }
+
+// export const errorMessage = () => {
+//   return {
+//     type: SET_ERROR,
+//   }
+// }
