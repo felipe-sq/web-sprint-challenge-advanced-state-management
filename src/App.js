@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import { fetchSmurfs } from "./actions";
 
 import AddForm from './components/AddForm';
@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 class App extends Component {
   componentDidMount() {
     console.log("CDM working")
-    this.props.dispatch(fetchSmurfs());
+    this.props.fetchSmurfs();
   }
   
   render() {
@@ -29,15 +29,7 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     smurfs: state.quote,
-//     loading: state.loading,
-//     error: state.error
-//   }
-// }
-
-export default connect(null)(App);
+export default connect(null, { fetchSmurfs })(App);
 
 //Task List:
 //1. Connect the fetchSmurfs actions to the App component.

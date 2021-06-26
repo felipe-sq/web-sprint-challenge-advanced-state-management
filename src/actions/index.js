@@ -55,32 +55,3 @@ export const errorMessage = (error) => {
     payload: error
   }
 }
-
-
-// export const fetchSmurfs = () => (dispatch) => {
- 
-//   dispatch({ type: FETCH_SMURFS_START });
-
-//   axios.get("http://localhost:3333/smurfs")
-//     .then(res => {
-//       console.log(res);
-//       dispatch({ type: FETCH_SMURFS_SUCCESS, payload: res.data})
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       dispatch({ type: FETCH_SMURFS_ERROR, payload: err })
-//     })
-// }
-
-// export const addSmurf = (newSmurf) => {
-//   return {
-//     type: ADD_SMURF,
-//     payload: newSmurf
-//   }
-// }
-
-// export const errorMessage = () => {
-//   return {
-//     type: SET_ERROR,
-//   }
-// }

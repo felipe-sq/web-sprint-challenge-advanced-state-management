@@ -1,5 +1,4 @@
 import { ADD_SMURF, FETCH_SMURFS_ERROR, FETCH_SMURFS_START, FETCH_SMURFS_SUCCESS, SET_ERROR } from "../actions";
-// import smurfs from '../mocks/handlers';
 
 export const initialState = {
   smurfs: [],
@@ -27,15 +26,13 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       }
     case ADD_SMURF: 
+      const newSmurf = {
+        ...action.payload,
+        id: Date.now()
+      }
       return {
-        // ...state,
-        // id: Date.now(),
-        // name: action.payload.name,
-        // nickname: action.payload.nickname,
-        // position: action.payload.position, 
-        // summary: action.payload.summary
         ...state,
-        smurfs: [...state.smurfs, action.payload]
+        smurfs: [...state.smurfs, newSmurf]
       }
     case SET_ERROR:
       return  {
